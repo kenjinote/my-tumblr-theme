@@ -1,0 +1,165 @@
+﻿<html lang="ja">
+<head>
+  <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">  
+  <meta name="description" content="{MetaDescription}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+  body {
+    color:#666666;
+  }
+  .topheader {
+    text-align:center;
+  }
+  .toptitle a {
+    color:inherit;
+    text-decoration:none;
+  }
+  .description{
+    font-size: 1rem;
+  }
+  .posttitle a {
+    color:inherit;
+    text-decoration:none;
+  }
+  .post1 {
+    margin:32px;
+    padding:16px;
+    border-radius:10px;
+    background:#ffffff;
+    box-shadow:0 10px 25px 0 rgba(0, 0, 0, .1);
+    width:80%;
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .tmblr-full img, .article-body figure img {
+    height:350px;
+    width:100%;
+    object-fit:contain;
+  }
+  .article-body figure video {
+    width:100%;
+  }
+  .postfooter {
+    text-align:right;
+  }
+  .postfooter a {
+    text-decoration:none;
+    font-style:italic;
+    color:#cdcdcd;
+  }
+  .bottomfooter {
+    text-align:center;
+    width:80%;
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #pagination a {
+    color:inherit;
+    text-decoration:none;
+  }
+  .previous {
+    float:left;
+  }
+  .next {
+    float:right;
+  }
+  @media screen and ( max-width: 896px ) {
+    .pc_part { 
+      display:none; 
+    }
+  }
+  @media screen and ( min-width: 897px )  {
+    .sp_part { 
+      display:none; 
+    }
+  }
+</style>
+
+</head>
+<body style="background:{BackgroundColor};">
+<header class="topheader">
+  <h1 class="toptitle"><a href="/">{Title}</a></h1>
+  <h2 class="description">{Description}</h2>
+</header>
+
+<main>
+  {block:Posts}
+	<article class="post1">
+      {block:Text}
+        <!-- Text -->
+        <header>
+          {block:Title}<h3 class="posttitle"><a href="{Permalink}">{Title}</a></h3>{/block:Title}
+        </header>
+        {block:Body}
+          <div class="article-body">
+            {Body}
+          </div>
+        {/block:Body}
+      {/block:Text}
+      {block:Photo}
+        <!-- Photo -->
+        <div style="text-align:center;">
+          {LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}" />{LinkCloseTag}
+        </div>
+        {block:Caption}
+          <div class="description">{Caption}</div>
+          <div>{LinkURL}</div>
+        {/block:Caption}
+      {/block:Photo}
+      {block:Video}
+        <!-- Video -->
+        <div class="sp_part" style="width:250px;margin:0 auto;">
+          {Video-250}
+        </div>
+        <div class="pc_part" style="width:700px;margin:0 auto;">
+          {Video-700}
+        </div>
+        {block:Caption}
+          <div class="description">{Caption}</div>
+        {/block:Caption}
+        <div style="float:left;color:#cdcdcd;font-style:italic;">{PlayCount}</div>
+      {/block:Video}
+      {block:Photoset}
+      <!-- Photoset -->
+        <figure>
+          {Photoset}
+          <div class="description">{Caption}</div>
+        </figure>
+      {/block:Photoset}    
+      <footer class="postfooter">
+        {block:Date}
+          <a href="{Permalink}">
+            <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">
+              {Year}年{MonthNumber}月{DayOfMonth}日({ShortDayOfWeek})
+            </time>
+          </a>
+        {/block:Date}
+      </footer>
+	</article>
+  {/block:Posts}
+</main>
+
+<footer class="bottomfooter">
+  {block:IndexPage}
+    {block:Pagination}
+    <div id="pagination">
+        {block:PreviousPage}
+          <a href="{PreviousPage}" class="previous">{lang:Previous}</a>
+        {/block:PreviousPage}
+        {block:NextPage}
+          <a href="{NextPage}" class="next">{lang:Next}</a>
+        {/block:NextPage}
+      </div>
+    {/block:Pagination}
+  {/block:IndexPage}
+  <address>
+    © {CopyrightYears} kenji
+  </address>
+</footer>
+    
+</body>
+</html>
